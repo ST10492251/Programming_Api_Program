@@ -189,13 +189,12 @@ The RaceDay API is currently in the planning and design stage.
 * [x] ERD design
 * [x] API planning
 * [x] Endpoint planning
-
-### To Be Completed
-
-* [ ] Create SQL Server database
-* [ ] Create C# Web API
-* [ ] Connect API to SQL Server
-* [ ] Implement CRUD operations
+* [x] Create SQL Server database
+* [x] Create C# Web API
+* [x] Connect API to SQL Server
+* [x] Implement CRUD operations
+      
+### To Be 
 * [ ] Test API endpoints
 * [ ] Complete API documentation
 
