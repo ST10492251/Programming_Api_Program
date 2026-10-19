@@ -233,11 +233,11 @@ The RaceDay project is being developed for educational purposes to demonstrate k
 
 ---
 
-## youtube video link 
+## youtube video link part 1
 https://youtu.be/Nj7h6yU0tc0
 ---
 
-## Project Status
+## Project Status * part 2 under master branch 
 
 **Status: In Development**
 
