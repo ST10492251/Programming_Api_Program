@@ -31,7 +31,11 @@ namespace RaceDayAPI.Controllers
         }
 
         // GET: api/events/5
+<<<<<<< HEAD
         [HttpGet("{id:int}")]
+=======
+        [HttpGet("{ id:int}")]
+>>>>>>> 1ca75e54721b6f6e0cb19dc8518f6ba6ae7ee484
         public async Task<IActionResult> GetEvent(int id)
         {
             var eventItem = await _context.Events
@@ -59,12 +63,20 @@ namespace RaceDayAPI.Controllers
             var userId = User.FindFirstValue(
                 ClaimTypes.NameIdentifier);
 
+<<<<<<< HEAD
             if (!int.TryParse(userId, out int organiserId))
+=======
+            if (string.IsNullOrEmpty(userId))
+>>>>>>> 1ca75e54721b6f6e0cb19dc8518f6ba6ae7ee484
             {
                 return Unauthorized();
             }
 
+<<<<<<< HEAD
             model.OrganiserId = organiserId;
+=======
+            model.OrganiserId = userId;
+>>>>>>> 1ca75e54721b6f6e0cb19dc8518f6ba6ae7ee484
 
             _context.Events.Add(model);
             await _context.SaveChangesAsync();
@@ -73,6 +85,7 @@ namespace RaceDayAPI.Controllers
                 nameof(GetEvent),
                 new { id = model.EventID },
                 model);
+<<<<<<< HEAD
        
        }
 
@@ -126,3 +139,8 @@ namespace RaceDayAPI.Controllers
 
     }
 }
+=======
+        }
+    }
+}
+>>>>>>> 1ca75e54721b6f6e0cb19dc8518f6ba6ae7ee484

@@ -216,9 +216,17 @@ Common issues and possible solutions include:
 - **HTTP 404 errors:** Confirm the controller route and endpoint URL.
 - **HTTP 401 or 403 errors:** Check authentication status and authorization requirements.
 
+<<<<<<< HEAD
 
 
 ## 10. Conclusion
+=======
+## 10.YouTube link part 2
+https://youtu.be/ruUMyVkAnos?si=qlZeJUxw8aO0sHe8
+
+
+## 11. Conclusion
+>>>>>>> 1ca75e54721b6f6e0cb19dc8518f6ba6ae7ee484
 
 RaceDayAPI provides a foundation for managing race-day information through a RESTful API. By combining ASP.NET Core, C#, Entity Framework Core, and Microsoft SQL Server, the project supports structured data management and API-based communication. Swagger makes it easier to explore and test the API during development.
 
