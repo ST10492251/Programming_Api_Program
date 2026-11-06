@@ -31,7 +31,7 @@ namespace RaceDayAPI.Controllers
         }
 
         // GET: api/events/5
-        [HttpGet("{ id:int}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetEvent(int id)
         {
             var eventItem = await _context.Events
@@ -59,12 +59,12 @@ namespace RaceDayAPI.Controllers
             var userId = User.FindFirstValue(
                 ClaimTypes.NameIdentifier);
 
-            if (string.IsNullOrEmpty(userId))
+            if (!int.TryParse(userId, out int organiserId))
             {
                 return Unauthorized();
             }
 
-            model.OrganiserId = userId;
+            model.OrganiserId = organiserId;
 
             _context.Events.Add(model);
             await _context.SaveChangesAsync();
@@ -73,6 +73,56 @@ namespace RaceDayAPI.Controllers
                 nameof(GetEvent),
                 new { id = model.EventID },
                 model);
+       
+       }
+
+        // PUT: api/events/5
+        // Organisers only
+        [HttpPut("{id:int}")]
+        [Authorize(Roles = "Organiser")]
+        public async Task<IActionResult> UpdateEvent(
+            int id,
+            [FromBody] Event model)
+        {
+            var userId = User.FindFirstValue(
+                ClaimTypes.NameIdentifier);
+
+            if (!int.TryParse(userId, out int organiserId))
+            {
+                return Unauthorized();
+            }
+
+            var existingEvent = await _context.Events
+                .FirstOrDefaultAsync(e => e.EventID == id);
+
+            if (existingEvent == null)
+            {
+                return NotFound(new
+                {
+                    message = "Event not found."
+                });
+            }
+
+            // Ensure organisers can only update their own events.
+            if (existingEvent.OrganiserId != organiserId)
+            {
+                return Forbid();
+            }
+
+            existingEvent.EventName = model.EventName;
+            existingEvent.EventDate = model.EventDate;
+            existingEvent.Location = model.Location;
+            existingEvent.Description = model.Description;
+            existingEvent.Status = model.Status;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                message = "Event updated successfully.",
+                eventDetails = existingEvent
+            });
         }
+
     }
 }
