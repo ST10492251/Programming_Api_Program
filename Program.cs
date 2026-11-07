@@ -1,61 +1,50 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.EntityFrameworkCore;
-using RaceDayAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Connect to SQL Server database
-builder.Services.AddDbContext<RaceDayDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
+// Add MVC services.
+builder.Services.AddControllersWithViews();
 
-// Configure cookie authentication
-builder.Services
-    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.Cookie.Name = "RaceDay.Session.v2";
-        options.ExpireTimeSpan = TimeSpan.FromHours(2);
-        options.SlidingExpiration = true;
+// Configure session services.
+builder.Services.AddDistributedMemoryCache();
 
-        // Return 401 instead of redirecting API clients
-        options.Events.OnRedirectToLogin = context =>
-        {
-            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-            return Task.CompletedTask;
-        };
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
-        // Return 403 instead of redirecting API clients
-        options.Events.OnRedirectToAccessDenied = context =>
-        {
-            context.Response.StatusCode = StatusCodes.Status403Forbidden;
-            return Task.CompletedTask;
-        };
-    });
+// Connect to RaceDayAPI.
+builder.Services.AddHttpClient("RaceDayAPI", client =>
+{
+    string apiUrl = builder.Configuration
+        ["ApiSettings:BaseUrl"];
 
-// Register controllers
-builder.Services.AddControllers();
-
-// Register Swagger without custom cookie security headers
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+    client.BaseAddress = new Uri(apiUrl);
+});
 
 var app = builder.Build();
 
-// Enable Swagger during development
-if (app.Environment.IsDevelopment())
+// Configure the application.
+if (!app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 
-// Authentication must run before authorization
-app.UseAuthentication();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+// Enable session management.
+app.UseSession();
+
 app.UseAuthorization();
 
-// Map API controllers
-app.MapControllers();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
