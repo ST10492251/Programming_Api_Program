@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RaceDayAPI.Controllers.Models;
 
-namespace RaceDayAPI.Data
+namespace RaceDayAPI
 {
     public class RaceDayDbContext : DbContext
     {
@@ -14,7 +14,7 @@ namespace RaceDayAPI.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
-        public DbSet<RaceDayAPI.Controllers.Models.Route> Routes { get; set; }
+        public DbSet<Controllers.Models.Route> Routes { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<EventCategory> EventCategories { get; set; }
         public DbSet<Result> Results { get; set; }

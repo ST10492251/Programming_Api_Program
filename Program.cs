@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using RaceDayAPI.Data;
+using RaceDayAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
