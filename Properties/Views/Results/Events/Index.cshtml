@@ -1,0 +1,125 @@
+﻿@model IEnumerable<RaceDayMVC.Models.EventViewModel>
+
+@{
+    ViewData["Title"] = "Manage Events";
+}
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2>Manage Events</h2>
+            <p class="text-muted">
+                View and manage your RaceDay events.
+            </p>
+        </div>
+
+        <a asp-controller="Events"
+           asp-action="Create"
+           class="btn btn-primary">
+            + Create New Event
+        </a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered align-middle">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>Event ID</th>
+                        <th>Event Name</th>
+                        <th>Event Date</th>
+                        <th>Location</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var eventItem in Model)
+                    {
+                        <tr>
+                            <td>@eventItem.EventID</td>
+                            <td>@eventItem.EventName</td>
+                            <td>@eventItem.EventDate.ToString("dd MMM yyyy")</td>
+                            <td>@eventItem.Location</td>
+                            <td>@eventItem.Description</td>
+
+                            <td>
+                                <span class="badge bg-info text-dark">
+                                    @eventItem.Status
+                                </span>
+                            </td>
+
+                            <td>
+                                <a asp-controller="Events"
+                                   asp-action="Edit"
+                                   asp-route-id="@eventItem.EventID"
+                                   class="btn btn-warning btn-sm">
+                                    Edit
+                                </a>
+
+                                <form asp-controller="Events"
+                                      asp-action="Delete"
+                                      asp-route-id="@eventItem.EventID"
+                                      method="post"
+                                      style="display:inline;"
+                                      onsubmit="return confirm('Are you sure you want to delete this event?');">
+
+                                    @Html.AntiForgeryToken()
+
+                                    <button type="submit"
+                                            class="btn btn-danger btn-sm">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center">
+            <h5>No Events Found</h5>
+            <p>There are currently no events available.</p>
+            <p>Create your first event to get started.</p>
+        </div>
+    }
+
+    <div class="mt-4">
+        <a asp-controller="Organiser"
+           asp-action="Index"
+           class="btn btn-outline-secondary">
+            Back to Dashboard
+        </a>
+    </div>
+
+</div>

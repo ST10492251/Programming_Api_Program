@@ -1,0 +1,129 @@
+﻿@model List<RaceDayMVC.Controllers.PublishedEventViewModel>
+
+@{
+    ViewData["Title"] = "Browse Events";
+}
+
+<div class="container mt-4">
+
+    <h2>Browse Events</h2>
+
+    <p class="text-muted">
+        Explore published races and register for an event.
+    </p>
+
+    <a asp-controller="Participant"
+       asp-action="Index"
+       class="btn btn-secondary mb-4">
+        Back to Dashboard
+    </a>
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row g-4">
+
+            @foreach (var eventItem in Model)
+            {
+                <div class="col-md-6">
+                    <div class="card shadow-sm h-100">
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                @eventItem.EventName
+                            </h5>
+
+                            <p>
+                                <strong>Date:</strong>
+                                @eventItem.EventDate.ToString("dd MMM yyyy")
+                            </p>
+
+                            <p>
+                                <strong>Location:</strong>
+                                @eventItem.Location
+                            </p>
+
+                            <p>
+                                @eventItem.Description
+                            </p>
+
+                            <hr />
+
+                            <h6>Available Categories</h6>
+
+                            @if (eventItem.Categories.Any())
+                            {
+                                @foreach (var category in eventItem.Categories)
+                                {
+                                    <div class="border rounded p-3 mb-3">
+
+                                        <h6>@category.CategoryName</h6>
+
+                                        <p class="mb-1">
+                                            <strong>Entry Fee:</strong>
+                                            R @category.EntryFee.ToString("N2")
+                                        </p>
+
+                                        <p class="mb-2">
+                                            <strong>Available Places:</strong>
+                                            @(Math.Max(0,
+                                                                        category.MaximumParticipants -
+                                                                        category.EnrolledCount))
+                        </p>
+
+                        @if (category.EnrolledCount <
+                                                category.MaximumParticipants)
+                                        {
+                                            <button type="button"
+                                                    class="btn btn-primary"
+                                                    disabled>
+                                                Enrolment feature coming next
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn btn-secondary"
+                                                    disabled>
+                                                Fully Booked
+                                            </button>
+                                        }
+
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <p class="text-muted">
+                                    No categories have been assigned to this event.
+                                </p>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    }
+    else if (ViewBag.ErrorMessage == null)
+    {
+        <div class="alert alert-info">
+            No published events are currently available.
+        </div>
+    }
+
+</div>

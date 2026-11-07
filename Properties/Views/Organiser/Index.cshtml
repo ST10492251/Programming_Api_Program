@@ -1,0 +1,114 @@
+﻿@{
+    ViewData["Title"] = "Organiser Dashboard";
+}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+        <h1>Organiser Dashboard</h1>
+
+        <p class="text-muted">
+            Welcome to your RaceDay organiser portal.
+            Manage your events, categories, participants and results.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Manage Events -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Manage Events</h5>
+
+                    <p class="card-text">
+                        Create, update and manage your race events.
+                    </p>
+
+                    <a asp-controller="Events"
+                       asp-action="Index"
+                       class="btn btn-primary">
+                        Manage Events
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage Categories -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Manage Categories</h5>
+
+                    <p class="card-text">
+                        View and manage event categories.
+                    </p>
+
+                    <a asp-controller="Categories"
+                       asp-action="Index"
+                       class="btn btn-primary">
+                        Manage Categories
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Enrolments -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">View Enrolments</h5>
+
+                    <p class="card-text">
+                        View participants registered for your events.
+                    </p>
+
+                    <a asp-controller="Enrollments"
+                       asp-action="Index"
+                       class="btn btn-primary">
+                        View Enrolments
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage Results -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Manage Results</h5>
+
+                    <p class="card-text">
+                        Record and manage participants' race results.
+                    </p>
+
+                    <a asp-controller="Results"
+                       asp-action="Index"
+                       class="btn btn-success">
+                        Manage Results
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Logout -->
+    <div class="text-center mt-5">
+
+        <form asp-controller="Account"
+              asp-action="Logout"
+              method="post">
+
+            @Html.AntiForgeryToken()
+
+            <button type="submit"
+                    class="btn btn-outline-danger px-4">
+                Logout
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "Participant Dashboard";
+}
+
+<div class="container mt-5">
+
+    <h2 class="mb-3">Participant Dashboard</h2>
+
+    <p class="text-muted">
+        Welcome to RaceDay! Manage your race activities from here.
+    </p>
+
+    <hr />
+
+    <div class="row g-4 mt-2">
+
+        <!-- Browse Events -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Browse Events</h5>
+
+                    <p class="card-text">
+                        Explore available races and upcoming events.
+                    </p>
+
+                    <a asp-controller="Participant"
+                       asp-action="BrowseEvents"
+                       class="btn btn-primary">
+                        Browse Events
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Enrolments -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">My Enrolments</h5>
+
+                    <p class="card-text">
+                        View the events you have enrolled in.
+                    </p>
+
+                    <a asp-controller="Participant"
+                       asp-action="MyEnrolments"
+                       class="btn btn-primary">
+                        My Enrolments
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Results -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">My Results</h5>
+
+                    <p class="card-text">
+                        Check your race results.
+                    </p>
+
+                    <a asp-controller="Participant"
+                       asp-action="MyResults"
+                       class="btn btn-primary">
+                        My Results
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Logout -->
+    <form asp-controller="Account"
+          asp-action="Logout"
+          method="post"
+          class="mt-4">
+
+        @Html.AntiForgeryToken()
+
+        <button type="submit" class="btn btn-danger">
+            Logout
+        </button>
+
+    </form>
+
+</div>

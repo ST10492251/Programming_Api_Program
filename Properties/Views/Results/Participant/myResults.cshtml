@@ -1,0 +1,136 @@
+﻿@model List<RaceDayMVC.Controllers.MyResultViewModel>
+
+@{
+    ViewData["Title"] = "My Results";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2>My Results</h2>
+            <p class="text-muted">
+                View your race performance and finishing positions.
+            </p>
+        </div>
+
+        <a asp-controller="Participant"
+           asp-action="BrowseEvents"
+           class="btn btn-primary">
+            Browse Events
+        </a>
+    </div>
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="card shadow-sm">
+            <div class="card-body text-center py-5">
+
+                <h5>No Results Available Yet</h5>
+
+                <p class="text-muted">
+                    Your race results will appear here once the event
+                    organiser has published them.
+                </p>
+
+                <a asp-controller="Participant"
+                   asp-action="MyEnrolments"
+                   class="btn btn-outline-primary">
+                    View My Enrolments
+                </a>
+
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="mb-3">
+            <strong>Total Results:</strong> @Model.Count
+        </div>
+
+        <div class="row">
+
+            @foreach (var result in Model)
+            {
+                <div class="col-md-6 col-lg-4 mb-4">
+
+                    <div class="card shadow-sm h-100">
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                @result.EventName
+                            </h5>
+
+                            <hr />
+
+                            <p>
+                                <strong>Event Date:</strong><br />
+                                @result.EventDate.ToString("dd MMMM yyyy")
+                            </p>
+
+                            <p>
+                                <strong>Location:</strong><br />
+                                @result.Location
+                            </p>
+
+                            <p>
+                                <strong>Category:</strong><br />
+                                @result.CategoryName
+                            </p>
+
+                            <p>
+                                <strong>Finish Time:</strong><br />
+
+                                @(result.FinishTime.HasValue
+                                                        ? result.FinishTime.Value.ToString(@"hh\:mm\:ss")
+                                                        : "Not available")
+                                                                      </p>
+
+                            <p>
+                                <strong>Finishing Position:</strong><br />
+
+                                @(result.Position.HasValue
+                                                        ? result.Position.Value.ToString()
+                                                        : "Not available")
+                                                                      </p>
+
+                            <p>
+                                <strong>Result Status:</strong>
+
+                                <span class="badge bg-info text-dark">
+                                    @(string.IsNullOrWhiteSpace(result.ResultStatus)
+                                                                ? "Pending"
+                                                                : result.ResultStatus)
+                        </span>
+                    </p>
+
+                            <p class="text-muted small mb-0">
+                                Result Reference: #@result.ResultID
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+                }
+
+        </div>
+    }
+
+    <div class="mt-3">
+        <a asp-controller="Participant"
+           asp-action="Index"
+           class="btn btn-outline-secondary">
+            Back to Dashboard
+        </a>
+    </div>
+
+</div>

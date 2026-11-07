@@ -1,0 +1,171 @@
+﻿@model List<RaceDayMVC.Controllers.ManageResultViewModel>
+
+@{
+    ViewData["Title"] = "Manage Results";
+}
+
+<div class="container mt-4">
+
+    <h2>Manage Results</h2>
+    <p class="text-muted">
+        View enrolled participants and record their race results.
+    </p>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row g-4">
+
+            @foreach (var participant in Model)
+            {
+                <div class="col-12">
+                    <div class="card shadow-sm">
+
+                        <div class="card-header bg-light">
+                            <h5 class="mb-1">
+                                @participant.ParticipantName
+                            </h5>
+
+                            <small class="text-muted">
+                                @participant.Email
+                            </small>
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="row mb-3">
+
+                                <div class="col-md-4">
+                                    <strong>Event:</strong>
+                                    <p>@participant.EventName</p>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <strong>Event Date:</strong>
+                                    <p>
+                                        @participant.EventDate.ToString("dd MMM yyyy")
+                                    </p>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <strong>Category:</strong>
+                                    <p>@participant.CategoryName</p>
+                                </div>
+
+                            </div>
+
+                            <hr />
+
+                            <form asp-controller="Results"
+                                  asp-action="Save"
+                                  method="post">
+
+                                @Html.AntiForgeryToken()
+
+                                <input type="hidden"
+                                       name="enrolmentId"
+                                       value="@participant.EnrolmentID" />
+
+                                <div class="row g-3">
+
+                                    <div class="col-md-4">
+                                        <label class="form-label">
+                                            Finish Time
+                                        </label>
+
+                                        <input type="time"
+                                               name="finishTime"
+                                               class="form-control"
+                                               step="1"
+                                               required />
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label class="form-label">
+                                            Finishing Position
+                                        </label>
+
+                                        <input type="number"
+                                               name="position"
+                                               class="form-control"
+                                               min="1"
+                                               placeholder="Enter position"
+                                               required />
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label class="form-label">
+                                            Result Status
+                                        </label>
+
+                                        <select name="resultStatus"
+                                                class="form-select"
+                                                required>
+
+                                            <option value="finished">
+                                                Finished
+                                            </option>
+
+                                            <option value="dnf">
+                                                Did Not Finish
+                                            </option>
+
+                                            <option value="dns">
+                                                Did Not Start
+                                            </option>
+
+                                        </select>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <button type="submit"
+                                                class="btn btn-primary">
+                                            Save Result
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            No enrolled participants are available for recording results.
+        </div>
+    }
+
+    <a asp-controller="Organiser"
+       asp-action="Index"
+       class="btn btn-secondary mt-4">
+        Back to Dashboard
+    </a>
+
+</div>
