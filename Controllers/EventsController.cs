@@ -20,6 +20,7 @@ namespace RaceDayAPI.Controllers
         }
 
         // GET: api/events
+        // View all events.
         [HttpGet]
         public async Task<IActionResult> GetEvents()
         {
@@ -30,12 +31,48 @@ namespace RaceDayAPI.Controllers
             return Ok(events);
         }
 
+        // GET: api/events/published
+        // Participants can browse published events and categories.
+        [HttpGet("published")]
+        public async Task<IActionResult> GetPublishedEvents()
+        {
+            var events = await _context.Events
+                .AsNoTracking()
+                .Where(e => e.Status == "Published")
+                .Select(e => new
+                {
+                    e.EventID,
+                    e.EventName,
+                    e.EventDate,
+                    e.Location,
+                    e.Description,
+                    e.Status,
+
+                    Categories = _context.EventCategories
+                        .Where(ec => ec.EventID == e.EventID)
+                        .Select(ec => new
+                        {
+                            ec.EventCategoryID,
+                            ec.CategoryID,
+                            ec.Category.CategoryName,
+                            ec.EntryFee,
+                            ec.MaximumParticipants,
+
+                            EnrolledCount = _context.Enrollments
+                                .Count(en =>
+                                    en.EventCategoryID ==
+                                    ec.EventCategoryID)
+                        })
+                        .ToList()
+                })
+                .ToListAsync();
+
+            return Ok(events);
+        }
+
         // GET: api/events/5
-<<<<<<< HEAD
+        // View one event.
         [HttpGet("{id:int}")]
-=======
-        [HttpGet("{ id:int}")]
->>>>>>> 1ca75e54721b6f6e0cb19dc8518f6ba6ae7ee484
         public async Task<IActionResult> GetEvent(int id)
         {
             var eventItem = await _context.Events
@@ -54,7 +91,7 @@ namespace RaceDayAPI.Controllers
         }
 
         // POST: api/events
-        // Organisers only
+        // Organisers only.
         [HttpPost]
         [Authorize(Roles = "Organiser")]
         public async Task<IActionResult> CreateEvent(
@@ -63,34 +100,25 @@ namespace RaceDayAPI.Controllers
             var userId = User.FindFirstValue(
                 ClaimTypes.NameIdentifier);
 
-<<<<<<< HEAD
             if (!int.TryParse(userId, out int organiserId))
-=======
-            if (string.IsNullOrEmpty(userId))
->>>>>>> 1ca75e54721b6f6e0cb19dc8518f6ba6ae7ee484
             {
                 return Unauthorized();
             }
 
-<<<<<<< HEAD
             model.OrganiserId = organiserId;
-=======
-            model.OrganiserId = userId;
->>>>>>> 1ca75e54721b6f6e0cb19dc8518f6ba6ae7ee484
 
             _context.Events.Add(model);
+
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(
                 nameof(GetEvent),
                 new { id = model.EventID },
                 model);
-<<<<<<< HEAD
-       
-       }
+        }
 
         // PUT: api/events/5
-        // Organisers only
+        // Organisers only.
         [HttpPut("{id:int}")]
         [Authorize(Roles = "Organiser")]
         public async Task<IActionResult> UpdateEvent(
@@ -116,7 +144,6 @@ namespace RaceDayAPI.Controllers
                 });
             }
 
-            // Ensure organisers can only update their own events.
             if (existingEvent.OrganiserId != organiserId)
             {
                 return Forbid();
@@ -137,10 +164,45 @@ namespace RaceDayAPI.Controllers
             });
         }
 
-    }
-}
-=======
+        // DELETE: api/events/5
+        // Organisers only.
+        [HttpDelete("{id:int}")]
+        [Authorize(Roles = "Organiser")]
+        public async Task<IActionResult> DeleteEvent(int id)
+        {
+            var userId = User.FindFirstValue(
+                ClaimTypes.NameIdentifier);
+
+            if (!int.TryParse(userId, out int organiserId))
+            {
+                return Unauthorized();
+            }
+
+            var existingEvent = await _context.Events
+                .FirstOrDefaultAsync(e => e.EventID == id);
+
+            if (existingEvent == null)
+            {
+                return NotFound(new
+                {
+                    message = "Event not found."
+                });
+            }
+
+            if (existingEvent.OrganiserId != organiserId)
+            {
+                return Forbid();
+            }
+
+            _context.Events.Remove(existingEvent);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                message = "Event deleted successfully."
+            });
         }
     }
 }
->>>>>>> 1ca75e54721b6f6e0cb19dc8518f6ba6ae7ee484
+

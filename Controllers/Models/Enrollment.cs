@@ -1,20 +1,27 @@
-﻿namespace RaceDayAPI.Controllers.Models
-{
-    // Models/Enrollment.cs
-    using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
+namespace RaceDayAPI.Controllers.Models
+{
+    [Table("Enrolments")]
     public class Enrollment
     {
         [Key]
-        public int ID{ get; set; }
+        public int EnrolmentID { get; set; }
 
-        public int UserID { get; set; }
-        public User User { get; set; }
+        public int EventCategoryID { get; set; }
 
-        public int EventID{ get; set; }
-        public Event Event { get; set; }
+        public int ParticipantID { get; set; }
 
-        public string CategoryName { get; set; } // e.g., "Under 20", "10km", "Senior"
-        public DateTime EnrolledAt { get; set; } = DateTime.UtcNow;
+        public DateTime? EnrolmentDate { get; set; }
+
+        public string? Status { get; set; }
+
+        [ForeignKey(nameof(EventCategoryID))]
+        public EventCategory EventCategory { get; set; } = null!;
+
+        [ForeignKey(nameof(ParticipantID))]
+        public User Participant { get; set; } = null!;
     }
 }

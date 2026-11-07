@@ -1,19 +1,22 @@
-﻿namespace RaceDayAPI.Controllers.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace RaceDayAPI.Controllers.Models
 {
+    [Table("Results")]
     public class Result
     {
-            public int ResultID { get; set; }
+        [Key]
+        public int ResultID { get; set; }
 
-            public int EnrolmentID { get; set; }
+        public int EnrolmentID { get; set; }
 
-            public TimeSpan? FinishTime { get; set; }
+        public TimeSpan? FinishTime { get; set; }
 
-            public int? Position { get; set; }
+        public int? Position { get; set; }
 
-            public string ResultStatus { get; set; } = string.Empty;
-
-            // Relationship
-            public Enrollment Enrolment { get; set; } = null!;
-        }
+        [Required]
+        public string ResultStatus { get; set; } = string.Empty;
     }
+}
 
