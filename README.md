@@ -2,63 +2,107 @@
 
 ## 1. Project Overview
 
-RaceDayAPI is a RESTful Web API developed using C# and ASP.NET Core. The system is designed to support the management of race-day activities, including user accounts, events, event categories, participant enrollments, race results, routes, and weather records.
+RaceDay is a web-based Race Day Management System developed using C# and ASP.NET Core. The solution consists of two main applications:
 
-The API connects to a Microsoft SQL Server database called `RaceDayDb` to store and retrieve information. Entity Framework Core is used to interact with the database, while Swagger provides an interface for testing and documenting API endpoints.
+- **RaceDayAPI (Part 2):** A RESTful Web API that handles application data, authentication, business logic, and database operations.
+- **RaceDayMVC (Part 3):** An ASP.NET Core MVC application that provides a user-friendly interface and communicates with RaceDayAPI.
+
+The system supports the management of race-day activities, including user accounts, events, event categories, participant enrolments, race results, routes, and weather records.
+
+The applications connect to a Microsoft SQL Server database called `RaceDayDb`. Entity Framework Core is used to interact with the database, while Swagger provides an interface for documenting and testing API endpoints.
 
 ## 2. Project Objectives
 
-The main objectives of RaceDayAPI are to:
+The main objectives of RaceDay are to:
 
-- Provide an API for managing race events and related information.
-- Support user registration, login, and logout.
-- Allow users to view available events and retrieve event details.
-- Manage participant enrollments for events.
-- Store and retrieve race results and related records.
-- Maintain data in a centralized SQL Server database.
-- Provide a documented interface for testing API functionality.
+- Develop a RESTful API for managing race events and related information.
+- Provide user registration, login, and logout functionality.
+- Support different user roles, including Organisers and Participants.
+- Allow users to browse available race events and retrieve event details.
+- Enable participants to enrol in race events.
+- Allow organisers to manage events and event categories.
+- Provide functionality for viewing participant enrolments.
+- Store and retrieve race results.
+- Allow participants to view their race results and finishing positions.
+- Maintain application data in a centralized SQL Server database.
+- Provide an MVC interface that communicates with the Web API.
+- Support API documentation and testing through Swagger.
 
 ## 3. Technologies Used
 
 | Technology | Purpose |
 |---|---|
 | C# | Main programming language |
-| ASP.NET Core Web API (.NET 8) | API development framework |
+| ASP.NET Core Web API (.NET 8) | Backend API development |
+| ASP.NET Core MVC (.NET 8) | Frontend web application |
 | Microsoft SQL Server | Database management |
 | SQL Server Management Studio (SSMS) | Database administration |
 | Entity Framework Core 8 | Database access and object-relational mapping |
 | Swagger / Swashbuckle | API documentation and testing |
+| HTML5 | Web page structure |
+| CSS3 | Web page styling |
+| Bootstrap | Responsive user interface |
+| JavaScript | Client-side functionality |
 | Visual Studio | Development environment |
 | Git and GitHub | Version control and source code management |
 
-## 4. Database Description
+## 4. System Architecture
+
+The RaceDay solution follows a client-server architecture.
+
+### RaceDayAPI
+
+The API acts as the backend of the application. It processes HTTP requests, applies business logic, handles authentication, and communicates with the SQL Server database.
+
+### RaceDayMVC
+
+The MVC application acts as the frontend. It sends HTTP requests to RaceDayAPI using `HttpClient` and displays the returned information through Razor views.
+
+### Database
+
+Microsoft SQL Server stores the application's information. Entity Framework Core provides communication between the API and the database.
+
+The general communication process is:
+
+1. The user interacts with the MVC application.
+2. The MVC controller sends an HTTP request to RaceDayAPI.
+3. The API processes the request.
+4. Entity Framework Core communicates with SQL Server when database operations are required.
+5. The API returns an HTTP response.
+6. The MVC application displays the returned information to the user.
+
+## 5. Database Description
 
 The project uses a Microsoft SQL Server database named `RaceDayDb`.
 
-The database supports the storage and management of information related to users, events, enrollments, categories, results, routes, and weather records.
+The database supports the storage and management of information related to users, events, enrolments, categories, results, routes, and weather records.
 
-The database context includes the following entities:
+The database context is managed through the `RaceDayDbContext` class.
 
-- **Users** – Stores user account information.
-- **Events** – Stores information about race events.
+The main database entities include:
+
+- **Users** – Stores user account information, including names, email addresses, passwords, and roles.
+- **Events** – Stores race event information, including event names, dates, locations, descriptions, and statuses.
 - **Enrollments** – Records participants enrolled in events.
 - **Categories** – Stores event category information.
-- **EventCategories** – Associates events with their categories.
-- **Results** – Stores race result information.
+- **EventCategories** – Associates events with their available categories and entry information.
+- **Results** – Stores race result information, including finishing times, positions, and result statuses.
 - **Routes** – Stores race route information.
 - **WeatherRecords** – Stores weather information associated with race activities.
 
-The database is accessed through Entity Framework Core using the `RaceDayDbContext` class.
-
 ### Database Entity Relationship Diagram (ERD)
 
-The project database design is represented by the **RACEDAY DB ERD**, which illustrates the relationships between the database tables and their keys.
+The database design is represented by the **RACEDAY DB ERD**.
 
-## 5. API Endpoints
+The ERD illustrates the relationships between the database tables, primary keys, and foreign keys.
 
-The following endpoints describe the main API functionality. Confirm the final routes against the controllers in the project.
+## 6. RaceDayAPI – Part 2
 
-### Authentication
+RaceDayAPI is the backend Web API responsible for processing requests and managing application data.
+
+### 6.1 Authentication
+
+The API provides authentication functionality through the following endpoints:
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -66,28 +110,102 @@ The following endpoints describe the main API functionality. Confirm the final r
 | POST | `/api/auth/login` | Authenticates a user |
 | POST | `/api/auth/logout` | Logs out the current user |
 
-### Events
+Passwords are hashed before being stored in the database.
+
+The application uses role-based authorization to distinguish between Organisers and Participants.
+
+### 6.2 Events
 
 | Method | Endpoint | Description |
 |---|---|---|
-| GET | `/api/events` | Retrieves the available events |
+| GET | `/api/events` | Retrieves available events |
 | GET | `/api/events/{id}` | Retrieves a specific event |
+| GET | `/api/events/published` | Retrieves published events |
 | POST | `/api/events` | Creates a new event |
+| PUT | `/api/events/{id}` | Updates an existing event |
+| DELETE | `/api/events/{id}` | Deletes an event |
 
-### Enrollments
+### 6.3 Enrollments
 
 | Method | Endpoint | Description |
 |---|---|---|
-| POST | `/api/enrollments` | Creates an event enrollment |
-| GET | `/api/enrollments/events/{eventId}` | Retrieves enrollments for a specific event |
+| POST | `/api/enrollments` | Creates a participant enrolment |
+| GET | `/api/enrollments/mine` | Retrieves the current participant's enrolments |
+| GET | `/api/enrollments/events/{eventId}` | Retrieves enrolments for a specific event |
 
-**Note:** Additional endpoints may be available for categories, results, routes, and weather records, depending on the implemented controllers.
+### 6.4 Categories
 
-## 6. Installation and Setup
+The Categories controller provides functionality for managing event categories, including retrieving and managing category information.
 
-### Prerequisites
+### 6.5 Results
 
-Before running the project, ensure that you have installed:
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/results/mine` | Retrieves the current participant's results |
+| POST | `/api/results` | Saves or updates a participant's race result |
+
+The results functionality allows organisers to record finishing times, finishing positions, and result statuses.
+
+Participants can retrieve their own results through the API.
+
+**Note:** The endpoint tables describe the main implemented functionality. Refer to the Swagger interface for the complete list of available routes.
+
+## 7. RaceDayMVC – Part 3
+
+RaceDayMVC provides the frontend interface for interacting with the RaceDay system.
+
+The MVC application communicates with RaceDayAPI using `HttpClient`. It uses controllers, models, and Razor views to process and display application information.
+
+### 7.1 Account Management
+
+Users can:
+
+- Register an account.
+- Log in using their credentials.
+- Access the dashboard associated with their role.
+- Log out of the application.
+
+### 7.2 Organiser Functionality
+
+Organisers have access to an organiser dashboard.
+
+The dashboard provides access to:
+
+- **Manage Events:** Create and manage race events.
+- **Manage Categories:** Manage event categories.
+- **View Enrolments:** View participants registered for events.
+- **Manage Results:** Record and update participant race results.
+
+### 7.3 Participant Functionality
+
+Participants have access to a participant dashboard.
+
+The dashboard provides access to:
+
+- **Browse Events:** View published race events and their details.
+- **My Enrolments:** View personal event enrolments.
+- **My Results:** View race performance, finishing times, and positions.
+
+### 7.4 Authentication and Session Management
+
+The MVC application uses session-based authentication to maintain the user's login information.
+
+The session stores information such as:
+
+- User ID
+- Email address
+- User role
+- API authentication cookie
+
+The API authentication cookie is forwarded with relevant HTTP requests to access protected API endpoints.
+
+Organisers and Participants are directed to different dashboards according to their assigned roles.
+
+## 8. Installation and Setup
+
+### 8.1 Prerequisites
+
+Before running the project, ensure that the following software is installed:
 
 - Visual Studio with the ASP.NET and web development workload.
 - .NET 8 SDK.
@@ -95,7 +213,7 @@ Before running the project, ensure that you have installed:
 - SQL Server Management Studio (SSMS).
 - Git, if cloning the project from GitHub.
 
-### Step 1: Clone the Repository
+### 8.2 Clone the Repository
 
 Open a terminal and execute:
 
@@ -103,48 +221,76 @@ Open a terminal and execute:
 git clone YOUR_GITHUB_REPOSITORY_URL
 ```
 
-Replace `YOUR_GITHUB_REPOSITORY_URL` with the actual URL of the RaceDayAPI repository.
+Replace `YOUR_GITHUB_REPOSITORY_URL` with the actual URL of the GitHub repository.
 
 Alternatively, download the repository as a ZIP file and extract it.
 
-### Step 2: Open the Project
+### 8.3 Open the Solution
 
 1. Open Visual Studio.
 2. Select **Open a project or solution**.
-3. Locate and open `RaceDayAPI.sln`.
-4. Allow Visual Studio to restore the required NuGet packages.
+3. Locate the RaceDay solution file.
+4. Open the `.sln` file.
+5. Allow Visual Studio to restore the required NuGet packages.
 
-### Step 3: Configure the Database Connection
+### 8.4 Configure the Database Connection
 
-Open `appsettings.json` and configure the connection string to match your local SQL Server instance.
+Open the `appsettings.json` file inside the RaceDayAPI project.
+
+Configure the connection string to match your local SQL Server instance.
 
 Example:
 
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost\\SQLEXPRESS01;Database=RaceDayDb;Trusted_Connection=True;TrustServerCertificate=True;"
+    "DefaultConnection": "Server=YOUR_SERVER_NAME;Database=RaceDayDb;Trusted_Connection=True;TrustServerCertificate=True;"
   }
 }
 ```
 
-**Important:** Use the correct SQL Server instance name and authentication method for your computer. Ensure that the database exists and that the Windows account running the API has permission to access it.
+Replace `YOUR_SERVER_NAME` with the SQL Server instance name configured on your computer.
 
-Do not commit database passwords, API secrets, or other sensitive credentials to GitHub.
+Ensure that the database exists and that the account running the API has permission to access it.
 
-### Step 4: Restore Dependencies
+**Important:** Do not commit database passwords, API secrets, or other sensitive credentials to GitHub.
 
-In Visual Studio, right-click the solution and select **Restore NuGet Packages**.
+### 8.5 Configure the MVC API URL
 
-Alternatively, run the following command from the project directory:
+Open `appsettings.json` inside the RaceDayMVC project.
+
+Configure the API base address:
+
+```json
+{
+  "ApiSettings": {
+    "BaseUrl": "https://localhost:7089/"
+  }
+}
+```
+
+Ensure that the URL matches the address at which RaceDayAPI is running.
+
+### 8.6 Restore Dependencies
+
+In Visual Studio:
+
+1. Right-click the solution.
+2. Select **Restore NuGet Packages**.
+
+Alternatively, execute the following command:
 
 ```bash
 dotnet restore
 ```
 
-### Step 5: Build the Project
+### 8.7 Build the Solution
 
-In Visual Studio, select **Build > Rebuild Solution**.
+In Visual Studio:
+
+1. Select **Build**.
+2. Select **Rebuild Solution**.
+3. Resolve any compilation errors before running the application.
 
 Alternatively, execute:
 
@@ -152,90 +298,158 @@ Alternatively, execute:
 dotnet build
 ```
 
-Resolve any compilation errors before proceeding.
+### 8.8 Run the Applications
 
-### Step 6: Run the API
+Both projects should be configured to start in Visual Studio.
 
-Press **F5** in Visual Studio to run the project with debugging enabled, or press **Ctrl + F5** to run without debugging.
+1. Right-click the solution.
+2. Select **Configure Startup Projects**.
+3. Select **Multiple startup projects**.
+4. Set RaceDayAPI and RaceDayMVC to **Start**.
+5. Click **Apply** and **OK**.
+6. Press **F5** to run both applications.
 
-The API will start using the launch settings configured in the project.
+The API Swagger interface can be accessed at:
 
-## 7. Testing the API
+`https://localhost:7089/swagger/index.html`
 
-Swagger can be used to explore and test the available API endpoints.
+The MVC application runs at its configured local development URL.
 
-1. Run the RaceDayAPI project.
-2. Open the Swagger interface using the URL configured by Visual Studio.
-3. Select an endpoint to expand its details.
+## 9. Testing the Application
+
+### 9.1 API Testing
+
+Swagger is used to explore and test the available API endpoints.
+
+1. Run RaceDayAPI.
+2. Open the Swagger interface.
+3. Select an endpoint.
 4. Click **Try it out**.
 5. Enter the required request information.
 6. Click **Execute**.
 7. Review the HTTP response code and response body.
 
-For endpoints that require authentication, log in first and provide the required authentication credentials or session information.
+Endpoints requiring authentication must be accessed using an authenticated session.
 
-## 8. Project Structure
+### 9.2 MVC Testing
 
-The project may contain the following folders and files:
+The MVC application can be tested by performing the following actions:
+
+1. Register a new account or log in with an existing account.
+2. Verify that the correct dashboard is displayed.
+3. Log in as an Organiser and test event and category management.
+4. View participant enrolments.
+5. Record a participant's race result.
+6. Log in as a Participant.
+7. Browse published events.
+8. Enrol in an event.
+9. View personal enrolments.
+10. View available race results.
+11. Test the logout functionality.
+
+## 10. Project Structure
+
+The solution contains two main projects.
+
+### RaceDayAPI
 
 ```text
 RaceDayAPI/
 ├── Controllers/
 │   ├── AuthController.cs
 │   ├── EventsController.cs
-│   └── EnrollmentsController.cs
+│   ├── EnrollmentsController.cs
+│   └── ResultsController.cs
 ├── Data/
 │   └── RaceDayDbContext.cs
-├── Models/
-│   ├── User.cs
-│   ├── Event.cs
-│   ├── Enrollment.cs
-│   ├── Category.cs
-│   ├── EventCategory.cs
-│   ├── Result.cs
-│   ├── Route.cs
-│   └── WeatherRecord.cs
+├── Controllers/
+│   └── Models/
 ├── Properties/
 │   └── launchSettings.json
 ├── appsettings.json
 ├── Program.cs
-├── RaceDayAPI.csproj
-├── RaceDayAPI.sln
-└── README.md
+└── RaceDayAPI.csproj
 ```
 
+### RaceDayMVC
 
-## 9. Error Handling and Troubleshooting
+```text
+RaceDayMVC/
+├── Controllers/
+│   ├── AccountController.cs
+│   ├── HomeController.cs
+│   ├── OrganiserController.cs
+│   ├── ParticipantController.cs
+│   ├── EventsController.cs
+│   ├── CategoriesController.cs
+│   ├── EnrollmentsController.cs
+│   └── ResultsController.cs
+├── Models/
+├── Views/
+│   ├── Account/
+│   ├── Home/
+│   ├── Organiser/
+│   ├── Participant/
+│   ├── Events/
+│   ├── Categories/
+│   ├── Enrollments/
+│   └── Results/
+├── wwwroot/
+├── Properties/
+├── appsettings.json
+├── Program.cs
+└── RaceDayMVC.csproj
+```
+
+*Note: The folder structures above illustrate the main project organisation. Refer to the actual solution for all files and folders.*
+
+## 11. Error Handling and Troubleshooting
 
 Common issues and possible solutions include:
 
 - **Database connection errors:** Verify the SQL Server instance name, database name, connection string, and database permissions.
-- **Login or access denied errors:** Ensure that the account used by the API has the necessary SQL Server login and database-user permissions.
-- **Swagger does not open:** Check the configured launch URL and ensure that Swagger is enabled in the development environment.
+- **Login or access denied errors:** Ensure that the account has the necessary SQL Server login and database-user permissions.
+- **Swagger does not open:** Check the configured launch URL and ensure Swagger is enabled in the development environment.
 - **Build errors:** Restore NuGet packages, inspect the error messages, and rebuild the solution.
-- **HTTP 404 errors:** Confirm the controller route and endpoint URL.
-- **HTTP 401 or 403 errors:** Check authentication status and authorization requirements.
+- **HTTP 404 errors:** Confirm that the controller route and endpoint URL are correct.
+- **HTTP 401 errors:** Check whether the user is authenticated.
+- **HTTP 403 errors:** Verify the user's role and access permissions.
+- **MVC cannot connect to the API:** Ensure RaceDayAPI is running and that the MVC API base URL is correct.
 
-<<<<<<< HEAD
+## 12. YouTube Demonstrations
 
+### Part 2 – RaceDayAPI
 
-## 10. Conclusion
-=======
-## 10.YouTube link part 2
-https://youtu.be/ruUMyVkAnos?si=qlZeJUxw8aO0sHe8
+The following video demonstrates the RaceDayAPI implementation.
 
+[Watch the RaceDayAPI Part 2 Demonstration] (https://youtu.be/ruUMyVkAnos?si=qlZeJUxw8aO0sHe8).
 
-## 11. Conclusion
->>>>>>> 1ca75e54721b6f6e0cb19dc8518f6ba6ae7ee484
+### Part 3 – RaceDayMVC
 
-RaceDayAPI provides a foundation for managing race-day information through a RESTful API. By combining ASP.NET Core, C#, Entity Framework Core, and Microsoft SQL Server, the project supports structured data management and API-based communication. Swagger makes it easier to explore and test the API during development.
+The following video demonstrates the RaceDayMVC implementation.
+[Watch the RaceDayMVC Part 3 Demonstration] ().
 
-The project can be extended with additional endpoints, stronger authentication and authorization, validation, and further race-management functionality as requirements evolve.
+## 13. Conclusion
+
+The RaceDay project demonstrates the development of a web-based Race Day Management System using C#, ASP.NET Core Web API, ASP.NET Core MVC, Entity Framework Core, and Microsoft SQL Server.
+
+Part 2 focuses on developing a RESTful Web API that manages application data, authentication, and database operations.
+
+Part 3 extends the system by introducing an MVC application that communicates with the API and provides separate functionality for Organisers and Participants.
+
+Together, the two applications support race event management, category management, participant enrolments, and race result tracking.
+
+The project provides practical experience in API development, database integration, authentication, authorization, MVC architecture, HTTP communication, and version control using GitHub.
 
 ---
 
-**Project Name:** RaceDayAPI  
-**Framework:** ASP.NET Core Web API (.NET 8)  
+**Project Name:** RaceDayAPI – Race Day Management System  
+**Backend:** RaceDayAPI  
+**Frontend:** RaceDayMVC  
+**Framework:** ASP.NET Core Web API and ASP.NET Core MVC (.NET 8)  
+**Programming Language:** C#  
 **Database:** Microsoft SQL Server (`RaceDayDb`)  
+**ORM:** Entity Framework Core 8  
 **Development Environment:** Visual Studio  
-**Documentation and Testing:** Swagger
+**API Documentation and Testing:** Swagger  
+**Version Control:** Git and GitHub
