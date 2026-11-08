@@ -414,7 +414,7 @@ The following video demonstrates the RaceDayAPI implementation.
 ### Part 3 – RaceDayMVC
 
 The following video demonstrates the RaceDayMVC implementation.
-[Watch the RaceDayMVC Part 3 Demonstration] ().
+[Watch the RaceDayMVC Part 3 Demonstration] (https://youtu.be/EKBX5ZrpwZM).
 
 ## 13. Conclusion
 
