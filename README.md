@@ -211,21 +211,8 @@ Before running the project, ensure that the following software is installed:
 - .NET 8 SDK.
 - Microsoft SQL Server.
 - SQL Server Management Studio (SSMS).
-- Git, if cloning the project from GitHub.
 
-### 8.2 Clone the Repository
-
-Open a terminal and execute:
-
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-```
-
-Replace `YOUR_GITHUB_REPOSITORY_URL` with the actual URL of the GitHub repository.
-
-Alternatively, download the repository as a ZIP file and extract it.
-
-### 8.3 Open the Solution
+### 8.2 Open the Solution
 
 1. Open Visual Studio.
 2. Select **Open a project or solution**.
@@ -233,7 +220,7 @@ Alternatively, download the repository as a ZIP file and extract it.
 4. Open the `.sln` file.
 5. Allow Visual Studio to restore the required NuGet packages.
 
-### 8.4 Configure the Database Connection
+### 8.3 Configure the Database Connection
 
 Open the `appsettings.json` file inside the RaceDayAPI project.
 
@@ -255,7 +242,7 @@ Ensure that the database exists and that the account running the API has permiss
 
 **Important:** Do not commit database passwords, API secrets, or other sensitive credentials to GitHub.
 
-### 8.5 Configure the MVC API URL
+### 8.4 Configure the MVC API URL
 
 Open `appsettings.json` inside the RaceDayMVC project.
 
@@ -271,7 +258,7 @@ Configure the API base address:
 
 Ensure that the URL matches the address at which RaceDayAPI is running.
 
-### 8.6 Restore Dependencies
+### 8.5 Restore Dependencies
 
 In Visual Studio:
 
@@ -284,7 +271,7 @@ Alternatively, execute the following command:
 dotnet restore
 ```
 
-### 8.7 Build the Solution
+### 8.6 Build the Solution
 
 In Visual Studio:
 
@@ -298,7 +285,7 @@ Alternatively, execute:
 dotnet build
 ```
 
-### 8.8 Run the Applications
+### 8.7 Run the Applications
 
 Both projects should be configured to start in Visual Studio.
 
