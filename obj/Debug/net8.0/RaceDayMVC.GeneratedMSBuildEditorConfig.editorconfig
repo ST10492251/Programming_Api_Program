@@ -20,98 +20,122 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/Account/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/Account/Register.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = RWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/ApiTest/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBpVGVzdFxJbmRleC5jc2h0bWw=
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = SW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/categories/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcY2F0ZWdvcmllc1xDcmVhdGUuY3NodG1s
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Privacycshtml.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJpdmFjeWNzaHRtbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/categories/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcY2F0ZWdvcmllc1xFZGl0LmNzaHRtbA==
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Organiser/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xPcmdhbmlzZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/categories/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcY2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXEFjY291bnRcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/Enrollments/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5yb2xsbWVudHNcSW5kZXguY3NodG1s
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXEFjY291bnRcUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/Events/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRzXENyZWF0ZS5jc2h0bWw=
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/ApiTest/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXEFwaVRlc3RcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/Events/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRzXEVkaXQuY3NodG1s
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Enrollments/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXEVucm9sbG1lbnRzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/Events/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRzXEluZGV4LmNzaHRtbA==
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Events/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXEV2ZW50c1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Events/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXEV2ZW50c1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Events/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXEV2ZW50c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/Organiser/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JnYW5pc2VyXEluZGV4LmNzaHRtbA==
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXEhvbWVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/Participant/BrowseEvents.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRcQnJvd3NlRXZlbnRzLmNzaHRtbA==
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXEhvbWVcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/Participant/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRcSW5kZXguY3NodG1s
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/Participant/MyEnrolments.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRcTXlFbnJvbG1lbnRzLmNzaHRtbA==
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Participant/BrowseEvents.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXFBhcnRpY2lwYW50XEJyb3dzZUV2ZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/Participant/myResults.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRcbXlSZXN1bHRzLmNzaHRtbA==
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Participant/categories/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXFBhcnRpY2lwYW50XGNhdGVnb3JpZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/Privacycshtml.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpdmFjeWNzaHRtbC5jc2h0bWw=
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Participant/categories/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXFBhcnRpY2lwYW50XGNhdGVnb3JpZXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/Results/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdWx0c1xJbmRleC5jc2h0bWw=
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Participant/categories/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXFBhcnRpY2lwYW50XGNhdGVnb3JpZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Participant/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXFBhcnRpY2lwYW50XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Participant/MyEnrolments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXFBhcnRpY2lwYW50XE15RW5yb2xtZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Participant/myResults.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXFBhcnRpY2lwYW50XG15UmVzdWx0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Privacycshtml.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXFByaXZhY3ljc2h0bWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-c7ctg97efd
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXFNoYXJlZFxFcnJvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXFNoYXJlZFxfVmFsaWRhdGlvblNjcmlwdHNQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXF9WaWV3SW1wb3J0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXF9WaWV3U3RhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = X1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = X1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Student/Downloads/Programming_Api_Program-master/RaceDayMVC/Properties/Views/Results/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJvcGVydGllc1xWaWV3c1xSZXN1bHRzXFNoYXJlZFxfTGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = b-mgcjff7xi1
